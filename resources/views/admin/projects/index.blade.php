@@ -77,19 +77,18 @@
               <th class="my-th" scope="col">ID</th>
               <th class="my-th" scope="col">Titolo</th>
               <th class="my-th" scope="col">Tipo</th>
-              <th class="my-th" scope="col">Tecnologia</th>
+              <th class="my-th" scope="col">Tecnologie</th>
               <th class="my-th" scope="col">Descrizione</th>
               <th class="my-th" scope="col">GIT Hub</th>
               <th class="my-th" scope="col">Stato</th>
               <th class="my-th" scope="col">Azione</th>
-
             </tr>
           </thead>
           <tbody>
            @forelse ($projects as $project)
            <tr>
             <th class="my-id" scope="row">{{$project->id}}</th>
-            <td>{{$project->title}}</td>
+            <td>{{ Str::limit($project->title, 20)}}</td>
             <td><p class="badge rounded-pill text-center" style="background-color: {{$project->type?->color}}">{{$project->type?->label}}</p></td>
             <td>
               @forelse($project->technologies as $technology)
@@ -98,8 +97,8 @@
                 -
               @endforelse
             </td>
-            <td>{{ Str::limit($project->description, 20)}}</td>
-            <td>{{ Str::limit($project->github, 20)}}</td>
+            <td>{{ Str::limit($project->description, 10)}}</td>
+            <td>{{ Str::limit($project->github, 10)}}</td>
             <td>
               <form action="{{route("admin.projects.toggle", $project->id)}}" method="POST">
               @method("PATCH")

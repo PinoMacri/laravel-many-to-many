@@ -156,11 +156,17 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-       if($project->image)Storage::delete($project->image);
-       if(count($project->technologies))$project->technologies()->detach();
+        if ($project->image) {
+            Storage::delete($project->image);
+        }
+        
+        // Imposta la colonna deleted_at nella tabella ponte project_technology per i record correlati
+        $project->technologies()->updateExistingPivot($project->technologies->pluck('id'), ['deleted_at' => now()]);
+        
         $project->delete();
-        return to_route("admin.projects.index")->with("delete", "Il Progetto $project->title è stato eliminato");
+        return redirect()->route("admin.projects.index")->with("delete", "Il Progetto $project->title è stato eliminato");
     }
+    
 
     public function togglePubblication(Project $project){
         $project->is_published=!$project->is_published;
@@ -173,6 +179,7 @@ class ProjectController extends Controller
         $projects=Project::onlyTrashed()->get();
         return view("admin.projects.trash.index", compact("projects"));
     }
+    
 
     public function restore(int $id){
         $project = Project::onlyTrashed()->findOrFail($id);
