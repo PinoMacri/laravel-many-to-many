@@ -86,7 +86,8 @@
               <h4 class="text-white">Technologies</h4>
               @foreach ($technologies as $technology)
               <div class="form-check form-check-inline text-white">
-                <input class="form-check-input" type="checkbox" id="technologies-{{$loop->iteration}}" value="{{$technology->id}}" name="technologies[]">
+                <input class="form-check-input" type="checkbox" id="technologies-{{$loop->iteration}}" value="{{$technology->id}}" name="technologies[]"
+                @if (in_array($technology->id, old("technologies", $project_technologies ?? []))) checked @endif>
                 <label class="form-check-label" for="technologies-{{$loop->iteration}}">{{$technology->label}}</label>
               </div>
               @endforeach
