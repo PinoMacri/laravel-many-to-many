@@ -90,15 +90,15 @@
            <tr>
             <th class="my-id" scope="row">{{$project->id}}</th>
             <td>{{$project->title}}</td>
-            <td><p class="p-0 text-center m-0" style="background-color: {{$project->type?->color}}">{{$project->type?->label}}</p></td>
+            <td><p class="badge rounded-pill text-center" style="background-color: {{$project->type?->color}}">{{$project->type?->label}}</p></td>
             <td>
               @forelse($project->technologies as $technology)
-              <span class="badge rounded-pill" style="background-color: {{$technology->color}}">{{$technology->label}}</span>
+              <span class="badge rounded-pill text-dark" style="background-color: {{$technology->color}}">{{$technology->label}}</span>
               @empty
                 -
               @endforelse
             </td>
-            <td>{{ Str::limit($project->description, 50)}}</td>
+            <td>{{ Str::limit($project->description, 20)}}</td>
             <td>{{ Str::limit($project->github, 20)}}</td>
             <td>
               <form action="{{route("admin.projects.toggle", $project->id)}}" method="POST">
@@ -124,7 +124,7 @@
           </tr>
            @empty
             <tr>
-                <th scope="row" colspan="7" class="text-center">Non ci sono Progetti</th>
+                <th scope="row" colspan="8" class="text-center">Non ci sono Progetti</th>
             </tr>
            @endforelse
           </tbody>
