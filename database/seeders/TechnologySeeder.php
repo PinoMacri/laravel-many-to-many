@@ -22,6 +22,7 @@ class TechnologySeeder extends Seeder
             ["label"=>"PHP", "color"=>"blue"],
             ["label"=>"SASS", "color"=>"pink"],
             ["label"=>"Laravel", "color"=>"orange"],
+            ["label"=>"mySQL", "color"=>"gray"]
         ];
         foreach($technologies as $technology){
             $new_technology=new Technology();
