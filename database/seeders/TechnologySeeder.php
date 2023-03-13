@@ -14,14 +14,14 @@ class TechnologySeeder extends Seeder
     public function run(): void
     {
         $technologies = [
-            ["label"=>"HTML", "color"=>"danger"],
-            ["label"=>"CSS", "color"=>"info"],
-            ["label"=>"JavaScript", "color"=>"warning"],
-            ["label"=>"Bootstrap", "color"=>"btscolor"],
-            ["label"=>"Vue", "color"=>"success"],
-            ["label"=>"PHP", "color"=>"primary"],
-            ["label"=>"SASS", "color"=>"sasscolor"],
-            ["label"=>"Laravel", "color"=>"danger"],
+            ["label"=>"HTML", "color"=>"red"],
+            ["label"=>"CSS", "color"=>"aqua"],
+            ["label"=>"JavaScript", "color"=>"yellow"],
+            ["label"=>"Bootstrap", "color"=>"purple"],
+            ["label"=>"Vue", "color"=>"green"],
+            ["label"=>"PHP", "color"=>"blue"],
+            ["label"=>"SASS", "color"=>"pink"],
+            ["label"=>"Laravel", "color"=>"orange"],
         ];
         foreach($technologies as $technology){
             $new_technology=new Technology();
